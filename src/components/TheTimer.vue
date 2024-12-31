@@ -1,11 +1,17 @@
 <script setup lang="ts">
-const props = defineProps<{ time: string }>();
+import ConfettiExplosion from './ConfettiExplosion.vue';
+
+const props = defineProps<{ time: string; showConfettiExplosion: boolean }>();
 </script>
 
 <template>
   <main>
     <div>
       {{ props.time }}
+    </div>
+
+    <div style="position: absolute; top: 50%; left: 50%">
+      <ConfettiExplosion v-if="props.showConfettiExplosion"></ConfettiExplosion>
     </div>
   </main>
 </template>

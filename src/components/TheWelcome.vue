@@ -91,6 +91,6 @@ function resetTimer() {
   </div>
 
   <NewWindow v-model="openWindow">
-    <TheTimer :time="formatedTime"></TheTimer>
+    <TheTimer :time="formatedTime" :show-confetti-explosion="time === 0"></TheTimer>
   </NewWindow>
 </template>
