@@ -90,7 +90,7 @@ function resetTimer() {
     <button v-else @click="openWindow = false">Close popup</button>
   </div>
 
-  <NewWindow :model-value="openWindow">
+  <NewWindow v-model="openWindow">
     <TheTimer :time="formatedTime"></TheTimer>
   </NewWindow>
 </template>

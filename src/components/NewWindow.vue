@@ -2,8 +2,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue';
 
-const props = defineProps<{ modelValue: boolean }>();
-const emit = defineEmits(['update:modelValue']);
+const model = defineModel({ default: false });
 
 let windowRef: Window | null = null;
 const portal = ref(null);
@@ -47,12 +46,12 @@ const closePortal = (): void => {
   if (windowRef) {
     windowRef.close();
     windowRef = null;
-    emit('update:modelValue', false);
+    model.value = false;
   }
 };
 
-watch(props, () => {
-  if (props.modelValue) {
+watch(model, () => {
+  if (model.value) {
     openPortal();
   } else {
     closePortal();
@@ -60,17 +59,21 @@ watch(props, () => {
 });
 
 onMounted(() => {
-  if (props.modelValue) {
+  if (model.value) {
     openPortal();
   }
 });
 onBeforeUnmount(() => {
   closePortal();
 });
+
+window.onbeforeunload = () => {
+  closePortal();
+};
 </script>
 
 <template>
-  <div v-if="props.modelValue" ref="portal">
+  <div v-if="model" ref="portal">
     <slot />
   </div>
 </template>
