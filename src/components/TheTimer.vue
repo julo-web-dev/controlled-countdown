@@ -6,11 +6,20 @@ const props = defineProps<{
   showConfettiExplosion: boolean;
   confettiWidth: number;
   confettiHeight: number;
+  textColor: string;
+  backgroundColor: string;
+  fontSize: number;
 }>();
 </script>
 
 <template>
-  <main>
+  <main
+    :style="{
+      backgroundColor: backgroundColor,
+      color: textColor,
+      fontSize: `${fontSize}em`,
+    }"
+  >
     <div>
       {{ props.time }}
     </div>
@@ -31,8 +40,6 @@ main {
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: black;
-  color: white;
   font-family: 'Courier New', Courier, monospace;
 
   position: relative;

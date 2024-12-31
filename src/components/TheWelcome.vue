@@ -5,6 +5,10 @@ import NewWindow from './NewWindow.vue';
 
 const openWindow = ref(false);
 const startTime = ref('00:00:00');
+const backgroundColor = ref('#000000');
+const textColor = ref('#ffffff');
+const fontSize = ref(10);
+
 function updateTime() {
   const [hours, minutes, seconds] = startTime.value.split(':').map(Number);
   time.value = (hours * 3600 + minutes * 60 + seconds) * 1000;
@@ -86,6 +90,13 @@ const popupHeight = ref(0);
     <button id="resetBtn" @click="resetTimer()">Reset</button>
 
     <button @click="showMs = !showMs">Show milliseconds</button>
+    <br />
+    <label for="backgroundColorInput">Background</label>
+    <input type="color" id="backgroundColorInput" v-model="backgroundColor" />
+    <label for="textColorInput">Text</label>
+    <input type="color" id="textColorInput" v-model="textColor" />
+    <input type="number" v-model="fontSize" min="0" />
+    <br />
 
     <div id="timerDisplay">{{ formatedTime }}</div>
 
@@ -99,6 +110,9 @@ const popupHeight = ref(0);
       :show-confetti-explosion="time === 0"
       :confetti-width="popupWidth"
       :confetti-height="popupHeight"
+      :text-color="textColor"
+      :background-color="backgroundColor"
+      :font-size="fontSize"
     ></TheTimer>
   </NewWindow>
 </template>
