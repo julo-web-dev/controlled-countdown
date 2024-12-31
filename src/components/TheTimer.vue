@@ -29,6 +29,7 @@ const props = defineProps<{
         v-if="props.showConfettiExplosion"
         :stage-height="confettiHeight"
         :stage-width="confettiWidth"
+        :force="1"
       ></ConfettiExplosion>
     </div>
   </main>
