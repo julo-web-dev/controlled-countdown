@@ -73,7 +73,7 @@ window.onbeforeunload = () => {
 </script>
 
 <template>
-  <div v-if="model" ref="portal">
+  <div v-if="model" ref="portal" style="display: flex; width: 100%; height: 100%">
     <slot />
   </div>
 </template>
