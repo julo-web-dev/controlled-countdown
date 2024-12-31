@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import ConfettiExplosion from './ConfettiExplosion.vue';
 
-const props = defineProps<{ time: string; showConfettiExplosion: boolean }>();
+const props = defineProps<{
+  time: string;
+  showConfettiExplosion: boolean;
+  confettiWidth: number;
+  confettiHeight: number;
+}>();
 </script>
 
 <template>
@@ -11,7 +16,11 @@ const props = defineProps<{ time: string; showConfettiExplosion: boolean }>();
     </div>
 
     <div style="position: absolute; top: 50%; left: 50%">
-      <ConfettiExplosion v-if="props.showConfettiExplosion"></ConfettiExplosion>
+      <ConfettiExplosion
+        v-if="props.showConfettiExplosion"
+        :stage-height="confettiHeight"
+        :stage-width="confettiWidth"
+      ></ConfettiExplosion>
     </div>
   </main>
 </template>

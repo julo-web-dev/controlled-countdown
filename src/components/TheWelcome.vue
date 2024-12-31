@@ -67,6 +67,9 @@ function resetTimer() {
 
   updateTime();
 }
+
+const popupWidth = ref(0);
+const popupHeight = ref(0);
 </script>
 <template>
   <div class="container">
@@ -90,7 +93,12 @@ function resetTimer() {
     <button v-else @click="openWindow = false">Close popup</button>
   </div>
 
-  <NewWindow v-model="openWindow">
-    <TheTimer :time="formatedTime" :show-confetti-explosion="time === 0"></TheTimer>
+  <NewWindow v-model="openWindow" v-model:width="popupWidth" v-model:height="popupHeight">
+    <TheTimer
+      :time="formatedTime"
+      :show-confetti-explosion="time === 0"
+      :confetti-width="popupWidth"
+      :confetti-height="popupHeight"
+    ></TheTimer>
   </NewWindow>
 </template>

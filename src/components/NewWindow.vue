@@ -3,6 +3,8 @@
 import { ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue';
 
 const model = defineModel({ default: false });
+const width = defineModel('width', { default: 0 });
+const height = defineModel('height', { default: 0 });
 
 let windowRef: Window | null = null;
 const portal = ref(null);
@@ -37,9 +39,17 @@ const openPortal = (): void => {
       if (!windowRef || !portal.value) return;
       windowRef.document.body.append(portal.value);
       copyStyles(window.document, windowRef.document);
+      windowRef.addEventListener('resize', resizePortal);
       windowRef.addEventListener('beforeunload', closePortal);
     })
     .catch((error: Error) => console.error('Cannot instantiate portal', error.message));
+};
+
+const resizePortal = (): void => {
+  if (windowRef) {
+    width.value = windowRef.innerWidth;
+    height.value = windowRef.innerHeight;
+  }
 };
 
 const closePortal = (): void => {
@@ -47,6 +57,8 @@ const closePortal = (): void => {
     windowRef.close();
     windowRef = null;
     model.value = false;
+    width.value = 0;
+    height.value = 0;
   }
 };
 
