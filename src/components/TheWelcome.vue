@@ -2,10 +2,12 @@
 import { computed, ref, watch } from 'vue';
 import TheTimer from './TheTimer.vue';
 import NewWindow from './NewWindow.vue';
+import FlowerImage from '../assets/backgrounds/magic_flower_ai.jpeg';
 
 const openWindow = ref(false);
 const startTime = ref('00:00:00');
-const backgroundColor = ref('#000000');
+/* const backgroundColor = ref('#000000'); */
+const background = ref("url(" + FlowerImage + ") no-repeat center center fixed");
 const textColor = ref('#ffffff');
 const fontSize = ref(10);
 
@@ -91,8 +93,8 @@ const popupHeight = ref(0);
 
     <button @click="showMs = !showMs">Show milliseconds</button>
     <br />
-    <label for="backgroundColorInput">Background</label>
-    <input type="color" id="backgroundColorInput" v-model="backgroundColor" />
+    <!-- <label for="backgroundColorInput">Background</label>
+    <input type="color" id="backgroundColorInput" v-model="background" /> -->
     <label for="textColorInput">Text</label>
     <input type="color" id="textColorInput" v-model="textColor" />
     <input type="number" v-model="fontSize" min="0" />
@@ -111,7 +113,7 @@ const popupHeight = ref(0);
       :confetti-width="popupWidth"
       :confetti-height="popupHeight"
       :text-color="textColor"
-      :background-color="backgroundColor"
+      :background="background"
       :font-size="fontSize"
     ></TheTimer>
   </NewWindow>

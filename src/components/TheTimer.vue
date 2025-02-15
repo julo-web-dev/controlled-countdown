@@ -7,7 +7,8 @@ const props = defineProps<{
   confettiWidth: number;
   confettiHeight: number;
   textColor: string;
-  backgroundColor: string;
+  /* backgroundColor: string; */
+  background: string;
   fontSize: number;
 }>();
 </script>
@@ -15,7 +16,8 @@ const props = defineProps<{
 <template>
   <main
     :style="{
-      backgroundColor: backgroundColor,
+      background: background,
+      /* backgroundColor: backgroundColor, */
       color: textColor,
       fontSize: `${fontSize}em`,
     }"
